@@ -6,8 +6,6 @@ public class Main {
             @Override
             public void run() {
                 new LoginRegisterGUI();
-                new MainMenu(new JFrame("Project Management"));
             }
-        });
-    }
+        });    }
 }

@@ -19,6 +19,7 @@ public class LoginRegisterGUI {
     private static final String USER_FILE_PATH = "users.txt";
 
     public LoginRegisterGUI() {
+
         frame = new JFrame("Login/Register");
         panel = new JPanel();
         emailField = new JTextField(20);
@@ -59,13 +60,21 @@ public class LoginRegisterGUI {
         String password = new String(passwordField.getPassword());
 
         if (users.containsKey(email) && users.get(email).equals(password)) {
+            // Show a dialog and wait for user to dismiss it
             JOptionPane.showMessageDialog(frame, "Login successful");
-            frame.dispose(); // Close the login/register window
-            new MainMenu(new JFrame("Project Management"));
+
+            // Dispose of the login frame after the dialog is dismissed
+            frame.dispose();
+
+            // Then, show the main menu
+            SwingUtilities.invokeLater(() -> {
+                new MainMenu(new JFrame("Project Management"));
+            });
         } else {
             JOptionPane.showMessageDialog(frame, "Invalid email or password");
         }
     }
+
 
     private void registerUser() {
         String email = emailField.getText();
