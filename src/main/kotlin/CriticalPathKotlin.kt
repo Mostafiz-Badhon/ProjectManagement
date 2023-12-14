@@ -86,8 +86,8 @@ object CriticalPathKotlin: CriticalPath {
 
         while (!error && current.nextTasks.isNotEmpty()) // current.nextTasks.isNotEmpty() stops the while loop when end task is reached
             current.nextTasks.find { t -> computedValues[t]?.float == 0 }
-                    ?.let { criticalTasks.add(it); current = it } // If next critical task is found, add it to set...
-                    ?: criticalTasks.clear() // Otherwise clear the set
+                ?.let { criticalTasks.add(it); current = it } // If next critical task is found, add it to set...
+                ?: criticalTasks.clear() // Otherwise clear the set
 
         return criticalTasks.toTypedArray()
     }

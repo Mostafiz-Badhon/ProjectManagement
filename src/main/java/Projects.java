@@ -42,7 +42,7 @@ public class Projects extends JFrame {
 
 
     public Projects(JFrame mainFrame, Project currentProject) {
-        System.out.println("projects cons");
+        System.out.println("projects constr");
         frame = mainFrame;
         project = currentProject;
 
@@ -249,8 +249,8 @@ public class Projects extends JFrame {
                             CriticalCalculations c = criticalCalculations.get(t);
                             if (c != null) {
                                 criticalDetails = "\n\n" +
-                                        "The task can start is day " + c.getEarlyStart() + ", and will finish on day " + c.getEarlyFinish() + "\n" +
-                                        "The  task can start is day " + c.getLateStart() + ", and will finish on day " + c.getLateFinish();
+                                        "The earliest this task can start is day " + c.getEarlyStart() + ", and will finish on day " + c.getEarlyFinish() + "\n" +
+                                        "The latest this task can start is day " + c.getLateStart() + ", and will finish on day " + c.getLateFinish();
 
                                 if (c.getFloat() != null && c.getFloat() > 0)
                                     criticalDetails += "\nThis task can be started " + c.getFloat() + " day(s) late without affecting the overall duration of this project.";
@@ -381,7 +381,7 @@ public class Projects extends JFrame {
             }
             finalMatrix.add(newRow);
         }
-        
+
 
         DefaultTableModel model = (DefaultTableModel) adjmatrixTable.getModel();
 

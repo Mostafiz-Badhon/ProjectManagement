@@ -2,8 +2,6 @@ import Persistence.Persistence
 
 class Project(projectName: String) {
     //  name can not be empty.
-
-
     var name = ""
         set(value) {
             field = value.trim().takeIf { it.isNotEmpty() } ?: throw Exception("Project name cannot be blank.")
@@ -16,7 +14,6 @@ class Project(projectName: String) {
         name = projectName
         Persistence.addProject(this)
     }
-
     /**
      * Introduces a new task to the project.
      * Previous tasks are an optional parameter (omit if a task has no dependencies).
@@ -84,7 +81,6 @@ class Project(projectName: String) {
         tasks.remove(task)
         Persistence.save()
     }
-
     fun deleteProject() {
         val projectInPersistence = Persistence.getProjectByName(name)
             ?: throw Exception("Project not found in Persistence")
@@ -129,13 +125,13 @@ class Project(projectName: String) {
     }
 
     fun createAdjacencyMatrix(): Array<BooleanArray> {
-        // Create a mapping of task names to their indices
+        //  mapping of task names to their indices
         val taskIndexMap = tasks.mapIndexed { index, task -> task.name to index }.toMap()
 
         // Initialize the adjacency matrix with false values
         val adjacencyMatrix = Array(tasks.size) { BooleanArray(tasks.size) { false } }
 
-        // Populate the matrix based on task dependencies
+        // Populating the matrix based on task dependencies
         tasks.forEachIndexed { rowIndex, task ->
             task.nextTasks.forEach { dependentTask ->
                 val colIndex = taskIndexMap[dependentTask.name] ?: throw Exception("Task index not found")
@@ -151,9 +147,4 @@ class Project(projectName: String) {
     fun getTaskIndex(): Map<String, Int> {
         return tasks.mapIndexed { index, task -> task.name to index }.toMap()
     }
-
-
-
-
-
 }

@@ -33,7 +33,7 @@ public class LoginRegisterGUI {
     }
 
     private void initializeUI() {
-        panel.add(new JLabel("Email:"));
+        panel.add(new JLabel("Username:"));
         panel.add(emailField);
         panel.add(new JLabel("Password:"));
         panel.add(passwordField);

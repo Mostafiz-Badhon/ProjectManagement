@@ -12,14 +12,10 @@ class Task(taskName: String, taskDuration: Int, val previousTasks: MutableSet<Ta
         }
 
     val nextTasks = mutableSetOf<Task>()
-
     init {
         name = taskName
         duration = taskDuration
-
         previousTasks.forEach { t -> t.nextTasks.add(this) }
     }
-
     override fun toString() = name
-
 }
